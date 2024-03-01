@@ -1,4 +1,3 @@
-# vital_data_etl.py
 from tqdm import tqdm
 import pandas as pd
 from vital.client import Vital
