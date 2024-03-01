@@ -33,4 +33,4 @@ next-env.d.ts
 venv
 
 #csv files
-/src/vital_csvs/
+#/src/vital_csvs/
