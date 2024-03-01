@@ -48,7 +48,7 @@ const Login = () => {
             <Input size="large" placeholder="password" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" size="large" block>
+            <Button type="primary" htmlType="submit" size="large" block style={{ background: "#1890ff" }>
               Login
             </Button>
           </Form.Item>
