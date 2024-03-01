@@ -49,6 +49,9 @@ def get_vital_data(auth_key, user_id, functions, start_date, end_date):
 
 
 def save_to_csv(data, directory):
+    # Create directory if it doesn't exist
+    if not os.path.exists(directory):
+        os.makedirs(directory)
     for key, value in data.items():
         final_data = pd.DataFrame([vars(item) for item in value])
         filename = f'{directory}/{key}.csv'
