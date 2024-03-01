@@ -1,5 +1,6 @@
 from tqdm import tqdm
 import pandas as pd
+import os
 from vital.client import Vital
 from vital.environment import VitalEnvironment
 from datetime import datetime, timedelta
