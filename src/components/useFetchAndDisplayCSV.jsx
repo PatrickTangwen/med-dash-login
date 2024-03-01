@@ -1,7 +1,7 @@
 import Papa from 'papaparse';
 const useFetchAndDisplayCSV = async (filename) => {
   try {
-    const response = await fetch(`src/vital_csvs/${filename}`);
+    const response = await fetch(`/src/vital_csvs/${filename}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
