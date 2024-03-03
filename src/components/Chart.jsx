@@ -4,12 +4,10 @@ import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
 import { formatDate} from '/src/utils/core.js';
 import useFetchAndDisplayCSV from './useFetchAndDisplayCSV';
+import fetchDataEndPoint from './FetchDataEndPoint';
 
 const csvs = ['analysis_cal.csv','analysis_dist.csv','analysis_heart.csv','analysis_steps.csv']
-
-
-
-
+const api_endpoints = ['calories','distance','heartrate','steps']
 const Chart = memo(({ dateRange }) => {
   let [yOptions, setYOptions] = useState([
     {
@@ -42,11 +40,15 @@ const Chart = memo(({ dateRange }) => {
   useEffect(() => {
       async function fetchData() {
         try {
-          const cal_data = await useFetchAndDisplayCSV(csvs[0]);
-          const dist_data = await useFetchAndDisplayCSV(csvs[1]);
-          const heart_data = await useFetchAndDisplayCSV(csvs[2]);
-          const steps_data = await useFetchAndDisplayCSV(csvs[3]);
-                 
+          // const cal_data = await useFetchAndDisplayCSV(csvs[0]);
+          // const dist_data = await useFetchAndDisplayCSV(csvs[1]);
+          // const heart_data = await useFetchAndDisplayCSV(csvs[2]);
+          // const steps_data = await useFetchAndDisplayCSV(csvs[3]);
+
+          const cal_data = await fetchDataEndPoint(api_endpoints[0]);
+          const dist_data = await fetchDataEndPoint(api_endpoints[1]);
+          const heart_data = await fetchDataEndPoint(api_endpoints[2]);
+          const steps_data = await fetchDataEndPoint(api_endpoints[3]);    
           setYOptions([
             {
               name: 'Calories Burned',

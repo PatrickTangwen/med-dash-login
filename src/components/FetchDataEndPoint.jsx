@@ -1,25 +1,25 @@
 import Papa from 'papaparse';
-const useFetchAndDisplayCSV = async (filename) => {
+const fetchDataEndPoint = async (endpoint) => {
   try {
-    const response = await fetch(`src/vital_csvs/${filename}`);
+    const response = await fetch(`http://localhost:3000/api/data/${endpoint}`); 
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const csvText = await response.text();
-    console.log(filename);
-    console.log(csvText);
-    // console.log(typeof csvText);
-    
+    // if(endpoint == "calories"){
+    //   console.log("calories data")
+    //   console.log(csvText)
+    //   console.log(typeof csvText)
+    // }
     return new Promise((resolve, reject) => {
       Papa.parse(csvText, {
         header: true,
         dynamicTyping: true,
         complete: function(results) {
-          console.log('Parsed results:', results);
+          // console.log('Parsed results:', results.data);
           resolve({
             labels: results.data.map(item => item.timestamp).filter(item => item !== undefined),
             data: results.data.map(item => item.value).filter(item => item !== undefined)
-            
           });
         },
         error: function(error) {
@@ -32,4 +32,4 @@ const useFetchAndDisplayCSV = async (filename) => {
     console.error('Error reading the CSV file:', error);
   }
 };
-export default useFetchAndDisplayCSV;
+export default fetchDataEndPoint;
