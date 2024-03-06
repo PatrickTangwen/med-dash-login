@@ -1,16 +1,12 @@
 import Papa from 'papaparse';
 const fetchDataEndPoint = async (endpoint) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/data/${endpoint}`); 
+    const url_str = "https://med-dash-backend-server.vercel.app/api/data/"
+    const response = await fetch(`${url_str}${endpoint}`); 
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const csvText = await response.text();
-    // if(endpoint == "calories"){
-    //   console.log("calories data")
-    //   console.log(csvText)
-    //   console.log(typeof csvText)
-    // }
     return new Promise((resolve, reject) => {
       Papa.parse(csvText, {
         header: true,
