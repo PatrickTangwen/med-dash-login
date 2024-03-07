@@ -18,10 +18,12 @@
     }
     .linkbtn{
       display: flex;
-      padding: 50px;
+      width: calc(100% - 2em);
+      padding: 70px;
       margin-left:1em;
       font-size: larger;
       align-items: center;
+      box-sizing: border-box;
     }
 
     
