@@ -49,25 +49,27 @@ const Chart = memo(({ dateRange }) => {
           const dist_data = await fetchDataEndPoint(api_endpoints[1]);
           const heart_data = await fetchDataEndPoint(api_endpoints[2]);
           const steps_data = await fetchDataEndPoint(api_endpoints[3]);    
+          
+
           setYOptions([
             {
-              name: 'Calories Burned',
+              name: 'Calories Burned (kcal / 10)',
               data: cal_data.data,
               color: '#5ec9db'
             },
             {
-              name: 'Distance Traveled',
+              name: 'Distance Traveled (km)',
               data: dist_data.data,
               color: '#f5b97a'
             },
             {
-              name: 'Heart Rate',
+              name: 'Heart Rate (bpm)',
               data: heart_data.data,
               color: '#f57a7a'
               
             },
             {
-              name: 'Steps Taken',
+              name: 'Steps Taken (thousands)',
               data: steps_data.data, // Assuming useFetchAndDisplayCSV resolves to the structure { labels: [...], data: [...] }
               color: '#d5d97a'
             }

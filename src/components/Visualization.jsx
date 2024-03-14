@@ -47,7 +47,7 @@ function Visualization() {
         />
       </section>
 
-      <section className="mt-4 p-4 bg-white rounded-lg">
+      <section className="mt-4 p-4 bg-white rounded-lg max-w-screen-lg">
         <Chart dateRange={getDays(currentDate[0], currentDate[1])} />
       </section>
 
