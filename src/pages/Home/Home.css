@@ -1,8 +1,8 @@
-.container {
+/* .container {
     display: flex;
-    align-items: center; /* Vertically align items */
-  }
-  .welcome-header {
+    align-items: center;
+  } */
+  /* .welcome-header {
       text-align: left;
       color: black;
       font-weight: bold;
@@ -24,6 +24,80 @@
       font-size: larger;
       align-items: center;
       box-sizing: border-box;
-    }
+    } */
 
+    .container {
+      display: flex;
+      justify-content:space-between;
+      align-items: center; 
+    }
     
+    .welcome-header {
+      text-align: center;
+      color: black;
+      font-weight: bold;
+      font-size: 60px;
+      margin-left: 50px;
+      margin-top: 50px;
+      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+    
+    
+    .linkbtn {
+    display: flex;
+    padding: 70px;
+    width: calc(100% - 2em);
+    margin-left: 1em;
+    font-size:large;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    }
+    
+    .global-button{
+      width:300px;
+      height:60px;
+      margin-right:10px;
+    }
+    
+    .mood {
+      text-align : left;
+      font-size: 45px;
+      font-family: Arial, Helvetica, sans-serif
+    }
+    
+    .react-calendar__tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .mood-button {
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 0px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    
+    .mood-button:hover {
+      background-color: #e0e0e0;
+    }
+    
+    
+    .shift{
+        display: flex;
+        /* justify-content:right; */
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    
+    .progress{
+    padding: 10px;
+    display: flex;
+    gap: 2em;
+    justify-content:center; 
+    }
