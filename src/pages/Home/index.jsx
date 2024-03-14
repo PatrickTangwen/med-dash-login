@@ -32,10 +32,10 @@ const ProgressCheck = () => {
             },
           },
         }}> 
-        <Progress type="circle" percent={useFetchDataPercentages(csvs[0])} format = {(percent) => `Calorie Data: ${percent}%`} />
-        <Progress type="circle" percent={useFetchDataPercentages(csvs[1])} format = {(percent) => `Dist. Data: ${percent}%`} />
-        <Progress type="circle" percent={useFetchDataPercentages(csvs[2])} format = {(percent) => `Heartrate Data: ${percent}%`} />
-        <Progress type="circle" percent={useFetchDataPercentages(csvs[3])} format = {(percent) => `Step Data: ${percent}%`}/>
+        <Progress type="circle" percent={useFetchDataPercentages(api_endpoints[0])} format = {(percent) => `Calorie Data: ${percent}%`} />
+        <Progress type="circle" percent={useFetchDataPercentages(api_endpoints[1])} format = {(percent) => `Dist. Data: ${percent}%`} />
+        <Progress type="circle" percent={useFetchDataPercentages(api_endpoints[2])} format = {(percent) => `Heartrate Data: ${percent}%`} />
+        <Progress type="circle" percent={useFetchDataPercentages(api_endpoints[3])} format = {(percent) => `Step Data: ${percent}%`}/>
       </ConfigProvider>
     {/* </Flex> */}
   </div>  

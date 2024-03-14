@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useFetchAndDisplayCSV from "./useFetchAndDisplayCSV";
+import fetchDataEndPoint from './FetchDataEndPoint';
 import * as config_data from '../../config.json'
 import { day } from '@/utils/day'
 
@@ -15,7 +16,7 @@ function useFetchDataPercentages(csv){
             
             try{
                 console.log("Fetching Data", csv)
-                const data = await useFetchAndDisplayCSV(csv);
+                const data = await fetchDataEndPoint(csv);
                 setDates(data.labels);
                 
                 // This gets the first and last date so we can compare to the numbers in our config.
