@@ -5,7 +5,8 @@ import {AuthRoute} from '@/components/AuthRoute'
 import Home from "@/pages/Home";
 import Visualization from "@/components/Visualization";
 import HealthHabit from '@/components/HealthHabit';
-import DiaryEntries from "@/pages/Diary/DiaryEntries.jsx";
+// import DiaryEntries from "@/pages/Diary/lib/utils.js";
+import DiaryEntries from "@/pages/Diary/DiaryEntries.tsx";
 
 const router = createBrowserRouter([
     {
