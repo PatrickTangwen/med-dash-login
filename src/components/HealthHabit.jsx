@@ -1,186 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-//Create an editable today's entry page
-
-
-export default function MyApp() {
-  return (
-    <div>
-      <h1>Health Habits and Heart Rate Analysis</h1>
-      <HealthHabit />
-      <HeartRateAnalysis />
-	<GoalTracker/>
-	<HabitTracker/>
-    </div>
-  );
-}
-
-
-function HealthHabit() {
-  const [editingEntries, setEditingEntries] = useState(false);
-  const [addingGoal, setAddingGoal] = useState(false);
-  const [isRepeatable, setRepeatable] = useState(false);
-  const [numberByDate, setNumberByDate] = useState('');
-  const [date, setDate] = useState('')
-  const [addNewGoal, setNewGoal] = useState('')
-  const [editingGoal, setEditingGoal] = useState(false);
-  const [weight, setWeight] = useState('');
-  const [water, setWater] = useState('');
-  const [sleep, setSleep] = useState('');
-
-
-
-
-  //implement target number by date
-
-  //edit entries after clicking the corresponding button
-  function editEntries(e) {
-    setEditingEntries(true);
-    //setEditingEntries(e.editingEntries);
-  }
-  
-
-//   function StopEditingEntries(e) {
-//     setEditingEntries(false);
-//   }
-
-function addGoal(e) {
-    setAddingGoal(true);
-}
-
-function isRepeating(e) {
-    setRepeatable(e.target.checked);
-}
-
-function numByDate(e) {
-    setNumberByDate(e.target.value);
-}
-
-function byDate(e) {
-    setDate(e.target.value)
-}
-
-function editGoal() {
-    setEditingGoal(true);
-}
-
-  function changeWeight(e) {
-    setWeight(e.target.value);
-  }
-
-  function changeWater(e) {
-    setWater(e.target.value);
-  }
-
-  function changeSleep(e) {
-    setSleep(e.target.value);
-  }
-
-  function addingNewGoal(e) {
-    setNewGoal(true);
-  }
-  //Stop editting feature not used rn: <div onClick={StopEditingEntries}></div>
-
-  // Aesthetic <span style={{ color: habits.exercise[day] >= goal.exercise ? 'green' : 'red' }}>
-  return (
-    <>
-
-    <p> Today's Entries </p>
-
-      <p>Weight: {weight}</p>
-      <input value={weight} onChange={changeWeight} disabled={!editingEntries} />
-      
-      <p>Water: {water}</p>
-      <input value={water} onChange={changeWater} disabled={!editingEntries} />
-      
-      <p>Sleep: {sleep}</p>
-      <input value={sleep} onChange={changeSleep} disabled={!editingEntries} />
-      <p></p>
-
-      {addNewGoal &&(<label>
-        Goal is {numberByDate} by {byDate}
-      </label>
-
-      )}
-      <p></p>
-
-      <button onClick={editEntries}>Edit Today's Entries </button>
-
-      <button onClick={addGoal}>Add Goal </button>
-      <button onClick={editGoal}>Edit/Delete Goal</button>
-      <p></p>
-      {addingGoal && (<label>
-      <input type="checkbox" checked={isRepeatable} onChange={isRepeating} />
-      Goal is {isRepeatable ? 'Repeatable' : 'One Time'}
-      <p></p>
-      Achieve <input value={numberByDate} onChange={numByDate} /> by 
-      <input value={date} onChange={byDate} />
-      <p></p>
-      <button onClick={addingNewGoal}>Add New Goal</button>
-      </label>
-      )}
-      <p></p>
-    </>
-  );
-}
-function HeartRateAnalysis() {
-  // Define state for today's heart rate and weekly average heart rate
-  const [todayHeartRate, setTodayHeartRate] = useState(0);
-  const [weeklyAverageHeartRate, setWeeklyAverageHeartRate] = useState(0);
-  const [comparison, setComparison] = useState('');
-
-  // Simulated function to fetch today's heart rate (Replace with actual logic)
-  const fetchTodaysHeartRate = () => {
-    // Simulated logic to fetch today's heart rate from an API or database
-    // For demonstration purposes, generating a random heart rate between 60 and 100
-    return Math.floor(Math.random() * (100 - 60 + 1) + 60);
-  };
-
-  // Simulated function to fetch weekly average heart rate (Replace with actual logic)
-  const fetchWeeklyAverageHeartRate = () => {
-    // Simulated logic to fetch weekly average heart rate from an API or database
-    // For demonstration purposes, generating a random weekly average between 65 and 85
-    return Math.floor(Math.random() * (85 - 65 + 1) + 65);
-  };
-
-  useEffect(() => {
-    // Fetch today's heart rate and update state
-    const todayRate = fetchTodaysHeartRate();
-    setTodayHeartRate(todayRate);
-
-    // Fetch weekly average heart rate and update state
-    const weeklyAverageRate = fetchWeeklyAverageHeartRate();
-    setWeeklyAverageHeartRate(weeklyAverageRate);
-
-    // Compare today's heart rate with weekly average heart rate
-    if (todayRate > weeklyAverageRate) {
-      setComparison('HIGHER');
-    } else if (todayRate < weeklyAverageRate) {
-      setComparison('LOWER');
-    } else {
-      setComparison('EQUAL');
-    }
-  }, []);
-
-  return (
-    <div>
-      <h2>Heart Rate Analysis</h2>
-      <p>Today's Heart Rate: {todayHeartRate}</p>
-      <p>Weekly Average Heart Rate: {weeklyAverageHeartRate}</p>
-      <p>Today's heart rate was {comparison} than your typical heart rate average over the week.</p>
-    </div>
-  );
-}
-
-
-
-
-
-
-
-
-
-
-
 function GoalTracker() {
   const [habits, setHabits] = useState([]);
   const [habitName, setHabitName] = useState('');
@@ -188,27 +6,33 @@ function GoalTracker() {
   const [habitAmount, setHabitAmount] = useState('');
   const [habitTimePeriod, setHabitTimePeriod] = useState('');
   const [habitStartDate, setHabitStartDate] = useState('');
-
+  const [habitEndDate, setHabitEndDate] = useState('');
+  const [startValue, setStartValue] = useState('');
+  const [goalValue, setGoalValue] = useState('');
   const handleHabitNameChange = (e) => {
     setHabitName(e.target.value);
   };
-
   const handleHabitTypeChange = (e) => {
     setHabitType(e.target.value);
   };
-
   const handleHabitAmountChange = (e) => {
     setHabitAmount(e.target.value);
   };
-
   const handleHabitTimePeriodChange = (e) => {
     setHabitTimePeriod(e.target.value);
   };
-
   const handleHabitStartDateChange = (e) => {
     setHabitStartDate(e.target.value);
   };
-
+  const handleHabitEndDateChange = (e) => {
+    setHabitEndDate(e.target.value);
+  };
+  const handleStartValueChange = (e) => {
+    setStartValue(e.target.value);
+  };
+  const handleGoalValueChange = (e) => {
+    setGoalValue(e.target.value);
+  };
   const handleHabitSubmit = (e) => {
     e.preventDefault();
     const newHabit = {
@@ -216,122 +40,134 @@ function GoalTracker() {
       type: habitType,
       amount: habitAmount,
       timePeriod: habitTimePeriod,
-      startDate: habitStartDate
+      startDate: habitStartDate,
+      endDate: habitEndDate,
+      startValue: habitType === 'target' ? startValue : null,
+      goalValue: habitType === 'target' ? goalValue : null,
+      progress: 0 // Track progress for habit completion
     };
     setHabits([...habits, newHabit]);
-    setHabitName('');
-    setHabitType('');
-    setHabitAmount('');
-    setHabitTimePeriod('');
-    setHabitStartDate('');
+    resetForm();
   };
-
   const resetForm = () => {
     setHabitName('');
     setHabitType('');
     setHabitAmount('');
     setHabitTimePeriod('');
     setHabitStartDate('');
+    setHabitEndDate('');
+    setStartValue('');
+    setGoalValue('');
   };
-
+  const updateProgress = (index, increment) => {
+    const updatedHabits = [...habits];
+    updatedHabits[index].progress += increment;
+    setHabits(updatedHabits);
+  };
+  // Function to check if the goal was accomplished
+  const isGoalAccomplished = (habit) => {
+    return habit.type === 'habit' && habit.progress === habit.amount;
+  };
+  // Function to check if the goal has reached the desired compound
+  const isGoalReached = (habit) => {
+    return habit.type === 'target' && habit.progress >= habit.goalValue;
+  };
   return (
-    <div>
-      <h1>Goal Tracker</h1>
-      <form onSubmit={handleHabitSubmit}>
-        <label>
-          Name Your Goal:
-          <input type="text" value={habitName} onChange={handleHabitNameChange} />
-        </label>
-        <label>
-          Select Goal Type:
-          <select value={habitType} onChange={handleHabitTypeChange}>
+    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto', backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '10px' }}>
+      <h1 style={{ textAlign: 'center', color: '#333' }}>Goal Tracker</h1>
+      <form onSubmit={handleHabitSubmit} style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+        <div style={{ marginBottom: '15px' }}>
+          <label>Name Your Goal:</label>
+          <input type="text" value={habitName} onChange={handleHabitNameChange} style={{ marginLeft: '10px' }} />
+        </div>
+        <div style={{ marginBottom: '15px' }}>
+          <label>Select Goal Type:</label>
+          <select value={habitType} onChange={handleHabitTypeChange} style={{ marginLeft: '10px' }}>
             <option value="">Select</option>
             <option value="habit">Habit: Repeating Action</option>
             <option value="target">Target: Number by Date</option>
             <option value="average">Average: Repeating Number</option>
           </select>
-        </label>
+        </div>
         {habitType === 'habit' && (
           <>
-            <label>
-              How Many Times?:
-              <input type="number" value={habitAmount} onChange={handleHabitAmountChange} />
-            </label>
-            <label>
-              Time Period:
-              <select value={habitTimePeriod} onChange={handleHabitTimePeriodChange}>
+            <div style={{ marginBottom: '15px' }}>
+              <label>How Many Times?:</label>
+              <input type="number" value={habitAmount} onChange={handleHabitAmountChange} style={{ marginLeft: '10px' }} />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Time Period:</label>
+              <select value={habitTimePeriod} onChange={handleHabitTimePeriodChange} style={{ marginLeft: '10px' }}>
                 <option value="">Select</option>
                 <option value="per day">Per Day</option>
                 <option value="per week">Per Week</option>
                 <option value="per month">Per Month</option>
                 <option value="per year">Per Year</option>
               </select>
-            </label>
-            <label>
-              Start Date:
-              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} />
-            </label>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Start Date:</label>
+              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} style={{ marginLeft: '10px' }} />
+            </div>
           </>
         )}
         {habitType === 'target' && (
           <>
-            <label>
-              Start Value:
-              <input type="number" value={habitAmount} onChange={handleHabitAmountChange} />
-            </label>
-            <label>
-              Goal Value:
-              <input type="number" value={habitAmount} onChange={handleHabitAmountChange} />
-            </label>
-            <label>
-              Start Date:
-              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} />
-            </label>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Start Value:</label>
+              <input type="number" value={startValue} onChange={handleStartValueChange} style={{ marginLeft: '10px' }} />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Goal Value:</label>
+              <input type="number" value={goalValue} onChange={handleGoalValueChange} style={{ marginLeft: '10px' }} />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Start Date:</label>
+              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} style={{ marginLeft: '10px' }} />
+            </div>
           </>
         )}
         {habitType === 'average' && (
           <>
-            <label>
-              Goal:
-              <input type="number" value={habitAmount} onChange={handleHabitAmountChange} />
-            </label>
-            <label>
-              <input type="radio" value="or more" name="averageType" />
-              Or More
-            </label>
-            <label>
-              <input type="radio" value="or less" name="averageType" />
-              Or Less
-            </label>
-            <label>
-              Time Period:
-              <select value={habitTimePeriod} onChange={handleHabitTimePeriodChange}>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Goal:</label>
+              <input type="number" value={habitAmount} onChange={handleHabitAmountChange} style={{ marginLeft: '10px' }} />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label><input type="radio" value="or more" name="averageType" /> Or More</label>
+              <label><input type="radio" value="or less" name="averageType" /> Or Less</label>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Time Period:</label>
+              <select value={habitTimePeriod} onChange={handleHabitTimePeriodChange} style={{ marginLeft: '10px' }}>
                 <option value="">Select</option>
                 <option value="per day">Per Day</option>
                 <option value="per week">Per Week</option>
                 <option value="per month">Per Month</option>
                 <option value="per year">Per Year</option>
               </select>
-            </label>
-            <label>
-              Start Date:
-              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} />
-            </label>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Start Date:</label>
+              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} style={{ marginLeft: '10px' }} />
+            </div>
           </>
         )}
-        <button type="submit">Set Goal</button>
+        <button type="submit" style={{ marginLeft: '110px', marginTop: '10px', padding: '8px 20px', backgroundColor: '#4caf50', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Set Goal</button>
       </form>
-
-      <div>
-        <h2>Goals</h2>
+      <div style={{ marginTop: '30px', backgroundColor: '#fff', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+        <h2 style={{ color: '#333' }}>Goals</h2>
         <ul>
           {habits.map((habit, index) => (
-            <li key={index}>
+            <li key={index} style={{ color: isGoalReached(habit) ? 'green' : '' }}>
               {habit.name} - {habit.type}
               {habit.type === 'habit' && (
                 <>
                   <p>Amount: {habit.amount}</p>
                   <p>Time Period: {habit.timePeriod}</p>
+                  <p>Progress: {habit.progress}/{habit.amount}</p>
+                  <button onClick={() => updateProgress(index, -1)} disabled={habit.progress === 0}>-</button>
+                  <button onClick={() => updateProgress(index, 1)} disabled={habit.progress === habit.amount}>+</button>
                 </>
               )}
               {habit.type === 'target' && (
@@ -350,16 +186,9 @@ function GoalTracker() {
           ))}
         </ul>
       </div>
-
-      <button onClick={resetForm}>Add Another Goal</button>
     </div>
   );
 }
-
-
-
-
-
 
 function HabitTracker() {
   const [habits, setHabits] = useState({
@@ -609,3 +438,195 @@ function HabitTracker() {
     </div>
   );
 }
+
+function HealthHabit() {
+  const [habits, setHabits] = useState([]);
+  const [habitName, setHabitName] = useState('');
+  const [habitType, setHabitType] = useState('');
+  const [habitAmount, setHabitAmount] = useState('');
+  const [habitTimePeriod, setHabitTimePeriod] = useState('');
+  const [habitStartDate, setHabitStartDate] = useState('');
+  const [habitEndDate, setHabitEndDate] = useState('');
+  const [startValue, setStartValue] = useState('');
+  const [goalValue, setGoalValue] = useState('');
+  const handleHabitNameChange = (e) => {
+    setHabitName(e.target.value);
+  };
+  const handleHabitTypeChange = (e) => {
+    setHabitType(e.target.value);
+  };
+  const handleHabitAmountChange = (e) => {
+    setHabitAmount(e.target.value);
+  };
+  const handleHabitTimePeriodChange = (e) => {
+    setHabitTimePeriod(e.target.value);
+  };
+  const handleHabitStartDateChange = (e) => {
+    setHabitStartDate(e.target.value);
+  };
+  const handleHabitEndDateChange = (e) => {
+    setHabitEndDate(e.target.value);
+  };
+  const handleStartValueChange = (e) => {
+    setStartValue(e.target.value);
+  };
+  const handleGoalValueChange = (e) => {
+    setGoalValue(e.target.value);
+  };
+  const handleHabitSubmit = (e) => {
+    e.preventDefault();
+    const newHabit = {
+      name: habitName,
+      type: habitType,
+      amount: habitAmount,
+      timePeriod: habitTimePeriod,
+      startDate: habitStartDate,
+      endDate: habitEndDate,
+      startValue: habitType === 'target' ? startValue : null,
+      goalValue: habitType === 'target' ? goalValue : null,
+      progress: 0 // Track progress for habit completion
+    };
+    setHabits([...habits, newHabit]);
+    resetForm();
+  };
+  const resetForm = () => {
+    setHabitName('');
+    setHabitType('');
+    setHabitAmount('');
+    setHabitTimePeriod('');
+    setHabitStartDate('');
+    setHabitEndDate('');
+    setStartValue('');
+    setGoalValue('');
+  };
+  const updateProgress = (index, increment) => {
+    const updatedHabits = [...habits];
+    updatedHabits[index].progress += increment;
+    setHabits(updatedHabits);
+  };
+  // Function to check if the goal was accomplished
+  const isGoalAccomplished = (habit) => {
+    return habit.type === 'habit' && habit.progress === habit.amount;
+  };
+  // Function to check if the goal has reached the desired compound
+  const isGoalReached = (habit) => {
+    return habit.type === 'target' && habit.progress >= habit.goalValue;
+  };
+  return (
+    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto', backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '10px' }}>
+      <h1 style={{ textAlign: 'center', color: '#333' }}>Goal Tracker</h1>
+      <form onSubmit={handleHabitSubmit} style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+        <div style={{ marginBottom: '15px' }}>
+          <label>Name Your Goal:</label>
+          <input type="text" value={habitName} onChange={handleHabitNameChange} style={{ marginLeft: '10px' }} />
+        </div>
+        <div style={{ marginBottom: '15px' }}>
+          <label>Select Goal Type:</label>
+          <select value={habitType} onChange={handleHabitTypeChange} style={{ marginLeft: '10px' }}>
+            <option value="">Select</option>
+            <option value="habit">Habit: Repeating Action</option>
+            <option value="target">Target: Number by Date</option>
+            <option value="average">Average: Repeating Number</option>
+          </select>
+        </div>
+        {habitType === 'habit' && (
+          <>
+            <div style={{ marginBottom: '15px' }}>
+              <label>How Many Times?:</label>
+              <input type="number" value={habitAmount} onChange={handleHabitAmountChange} style={{ marginLeft: '10px' }} />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Time Period:</label>
+              <select value={habitTimePeriod} onChange={handleHabitTimePeriodChange} style={{ marginLeft: '10px' }}>
+                <option value="">Select</option>
+                <option value="per day">Per Day</option>
+                <option value="per week">Per Week</option>
+                <option value="per month">Per Month</option>
+                <option value="per year">Per Year</option>
+              </select>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Start Date:</label>
+              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} style={{ marginLeft: '10px' }} />
+            </div>
+          </>
+        )}
+        {habitType === 'target' && (
+          <>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Start Value:</label>
+              <input type="number" value={startValue} onChange={handleStartValueChange} style={{ marginLeft: '10px' }} />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Goal Value:</label>
+              <input type="number" value={goalValue} onChange={handleGoalValueChange} style={{ marginLeft: '10px' }} />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Start Date:</label>
+              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} style={{ marginLeft: '10px' }} />
+            </div>
+          </>
+        )}
+        {habitType === 'average' && (
+          <>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Goal:</label>
+              <input type="number" value={habitAmount} onChange={handleHabitAmountChange} style={{ marginLeft: '10px' }} />
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label><input type="radio" value="or more" name="averageType" /> Or More</label>
+              <label><input type="radio" value="or less" name="averageType" /> Or Less</label>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Time Period:</label>
+              <select value={habitTimePeriod} onChange={handleHabitTimePeriodChange} style={{ marginLeft: '10px' }}>
+                <option value="">Select</option>
+                <option value="per day">Per Day</option>
+                <option value="per week">Per Week</option>
+                <option value="per month">Per Month</option>
+                <option value="per year">Per Year</option>
+              </select>
+            </div>
+            <div style={{ marginBottom: '15px' }}>
+              <label>Start Date:</label>
+              <input type="date" value={habitStartDate} onChange={handleHabitStartDateChange} style={{ marginLeft: '10px' }} />
+            </div>
+          </>
+        )}
+        <button type="submit" style={{ marginLeft: '110px', marginTop: '10px', padding: '8px 20px', backgroundColor: '#4caf50', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Set Goal</button>
+      </form>
+      <div style={{ marginTop: '30px', backgroundColor: '#fff', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+        <h2 style={{ color: '#333' }}>Goals</h2>
+        <ul>
+          {habits.map((habit, index) => (
+            <li key={index} style={{ color: isGoalReached(habit) ? 'green' : '' }}>
+              {habit.name} - {habit.type}
+              {habit.type === 'habit' && (
+                <>
+                  <p>Amount: {habit.amount}</p>
+                  <p>Time Period: {habit.timePeriod}</p>
+                  <p>Progress: {habit.progress}/{habit.amount}</p>
+                  <button onClick={() => updateProgress(index, -1)} disabled={habit.progress === 0}>-</button>
+                  <button onClick={() => updateProgress(index, 1)} disabled={habit.progress === habit.amount}>+</button>
+                </>
+              )}
+              {habit.type === 'target' && (
+                <>
+                  <p>Start Value: {habit.startValue}</p>
+                  <p>Goal Value: {habit.goalValue}</p>
+                </>
+              )}
+              {habit.type === 'average' && (
+                <>
+                  <p>Goal: {habit.amount}</p>
+                  <p>Time Period: {habit.timePeriod}</p>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+export default HealthHabit;
